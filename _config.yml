@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 email: lichunyang_1@outlook.com
 description: "学习中。。。 | 学渣一枚 "
 keyword: "LCY, python, matlab, cuda ,raspberry,java,jsp, web"
-url: "http://lcyown.cn"              # your host, for absolute URL
+url: "http://blog.lcyown.cn"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
 
@@ -64,7 +64,7 @@ kramdown:
 
 # Google Analytics
 ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: lcyown.cn
+ga_domain: blog.lcyown.cn
 
 
 
@@ -89,6 +89,10 @@ service-worker: true
 
 # Friends
 friends: [
+    {
+        title : "AI柠檬 | 聂",
+        href : "https://blog.ailemon.me"
+    },
     # {
     #     title: "Su",
     #     href: "http://su.gallery/"
