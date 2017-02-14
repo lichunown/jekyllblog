@@ -43,11 +43,11 @@ import cv2
 
 ![去除高频部分](/img/in-post/python-opencv/lowpass.jpg)
 
-*注：去除高频部分（高通滤波器）*
+*注：去除高频部分（低通滤波器）*
 
 ![去除低频部分](/img/in-post/python-opencv/highpass.jpg)
 
-*注：去除低频部分（低通滤波器）*
+*注：去除低频部分（高通滤波器）*
 
 图片来源以及更详细的讲解：
 
