@@ -173,3 +173,14 @@ result = ifftshift(fftshift_result)         # 逆变化，查看原图
 ![原图](/img/in-post/python-opencv/encode.jpg)
 高通滤波之后：
 ![滤波](/img/in-post/python-opencv/result1.jpg)
+
+#### 其他的
+![原图](/img/in-post/python-opencv/encode.jpg)
+上图是当时知乎上一篇答案留下的彩蛋。（频域加密我还没试过，过几天有时间再试，不过彩蛋倒是搞出来了）[频域手段添加数字盲水印](https://www.zhihu.com/question/50735753)
+花费了我一晚上的时间，彩蛋终于让我给搞出来了。加密方法其实很简单，就是傅里叶变化加中心化之后，取绝对值，去除高频部分，调整一下幅度范围使之在0~255之间，然后以图片的形式输出即可。
+
+
+<br><br><br><br><br>
+<br><br><br><br><br>
+
+**未待完续。。。**
