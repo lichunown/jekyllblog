@@ -90,11 +90,11 @@ service-worker: true
 # Friends
 friends: [
     {
-        title : "AI柠檬 | 聂",
+        title : "AI柠檬 | N",
         href : "https://blog.ailemon.me"
     },
     {
-        title : "PEScn | 韩",
+        title : "PEScn | H",
         href : "https://blog.pescn.cc/"
     },
     # {
