@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      "Anaconda管理python版本"
-subtitle:   "一条命令协调一切"
+title:      "tencorflow在windows下的安装"
+subtitle:   "折腾，捣鼓。。。"
 date:       2017-02-21
 author:     "LCY"
 header-img: "img/in-post/install-tensorflow/index.jpg"
