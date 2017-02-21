@@ -4,7 +4,7 @@ title:      "python下使用opencv库实现图片滤波"
 subtitle:   "总结整理"
 date:       2017-02-14
 author:     "LCY"
-header-img: "img/in-post/python-opencv/fft.jpg"
+header-img: "/img/in-post/python-opencv/fft.jpg"
 tags:
     - python
     - opencv

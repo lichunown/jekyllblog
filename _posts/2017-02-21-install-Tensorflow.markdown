@@ -4,7 +4,7 @@ title:      "tencorflow在windows下的安装"
 subtitle:   "折腾，捣鼓。。。"
 date:       2017-02-21
 author:     "LCY"
-header-img: "img/in-post/install-tensorflow/index.jpg"
+header-img: "/img/in-post/install-tensorflow/index.png"
 tags:
     - python
     - tensorflow
