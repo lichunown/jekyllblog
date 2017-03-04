@@ -31,7 +31,7 @@ windows版docker依赖`Microsoft Hyper-V `
 #### 然后GG
 
 **官方教程是双击`Docker Quickstart Terminal`
-![Docker Quickstart Terminal](img/in-post/docker-install/quickstartBtn.png)
+![Docker Quickstart Terminal](/img/in-post/docker-install/quickstartBtn.png)
 **然而，报错！！！**
 
 #### 各种测试。。。
@@ -208,5 +208,5 @@ See 'docker run --help'.
    export "HTTPS_PROXY=http://192.168.56.1:1080"
    ```
    我是使用的shadowsocks。至于IP
-   ![ip查看](img/in-post/docker-install/ip1.png)
+   ![ip查看](/img/in-post/docker-install/ip1.png)
    可以看到，有两个虚拟的。至于用哪个，`ping`一下，哪个通用哪个呗。
