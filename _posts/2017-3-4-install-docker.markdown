@@ -195,3 +195,18 @@ docker: Network timed out while trying to connect to https://index.docker.io/v1/
 See 'docker run --help'.
 ```
 
+
+
+**怎么办……**
+
+1. ssh连接docker（或者直接通过virtualBox登录）
+
+2. 在 `/var/lib/boot2docker/profile` 添加如下内容。开启代理
+
+   ```
+   export "HTTP_PROXY=http://192.168.56.1:1080"
+   export "HTTPS_PROXY=http://192.168.56.1:1080"
+   ```
+   我是使用的shadowsocks。至于IP
+   ![ip查看](img/in-post/docker-install/ip1.png)
+   可以看到，有两个虚拟的。至于用哪个，`ping`一下，哪个通用哪个呗。
