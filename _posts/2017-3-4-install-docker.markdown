@@ -4,7 +4,7 @@ title:      "windows下安装docker"
 subtitle:   "不友好的win10家庭版"
 date:       2017-02-21
 author:     "LCY"
-header-img: "img/in-post/install-tensorflow/index.png"
+header-img: "img/default.jpg"
 tags:
     - docker
 ---
