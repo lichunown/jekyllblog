@@ -1,3 +1,3 @@
 # blog
 
-[blog URL](blog.lcyown.cn)
+My blog :[blog URL](blog.lcyown.cn)
