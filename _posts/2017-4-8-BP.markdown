@@ -1,0 +1,12 @@
+---
+layout:     post
+title:      "BP 算法"
+subtitle:   "还是不懂"
+date:       2017-04-8
+author:     "LCY"
+header-img: "img/default.jpg"
+tags:
+    - ML
+---
+
+连接：[一文弄懂BP算法](http://www.cnblogs.com/charlotte77/p/5629865.html)
