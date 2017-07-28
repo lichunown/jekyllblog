@@ -16,14 +16,21 @@ tags:
 关于DQN的原理，大佬们已经有一个系列的blog文章。
 
 [DQN 从入门到放弃1 DQN与增强学习](http://blog.csdn.net/AMDS123/article/details/70242419?locationNum=13&fps=1)
+
 [DQN 从入门到放弃2 增强学习与MDP](https://zhuanlan.zhihu.com/p/21292697?refer=intelligentunit)
+
 [DQN 从入门到放弃3 价值函数与Bellman方程](https://zhuanlan.zhihu.com/p/21340755?refer=intelligentunit)
+
 [DQN 从入门到放弃4 动态规划与Q-Learning](https://zhuanlan.zhihu.com/p/21378532?refer=intelligentunit)
+
 [DQN从入门到放弃5 深度解读DQN算法](https://zhuanlan.zhihu.com/p/21421729)
+
+
 
 <-----------------------------以下扩充学习-------------------------------------->
 
 [DQN从入门到放弃6 DQN的各种改进](https://zhuanlan.zhihu.com/p/21547911?refer=intelligentunit)
+
 [ DQN从入门到放弃7 连续控制DQN算法-NAF ](http://c.colabug.com/thread-1597875-1-1.html)
 
 
@@ -268,7 +275,6 @@ pip install keras
 # -*- coding: utf-8 -*-
 
 import gym
-#from DQN_cart import DQN
 import time
 import random
 import numpy as np
