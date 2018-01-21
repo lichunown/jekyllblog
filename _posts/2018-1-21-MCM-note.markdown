@@ -1,0 +1,351 @@
+---
+layout:     post
+title:      "数模编程常用代码总结"
+subtitle:   "做个汇总"
+date:       2018-1-21
+author:     "LCY"
+header-img: "img/default.jpg"
+tags:
+    - ML
+    - python
+    - MCM
+    - 数模
+---
+
+
+
+# 画图
+
+## plot参数
+
+### 线条和点
+
+| character | description           |
+| --------- | --------------------- |
+| '-'       | solid line style      |
+| '--'      | dashed line style     |
+| '-.'      | dash-dot line style   |
+| ':'       | dotted line style     |
+| '.'       | point marker          |
+| ','       | pixel marker          |
+| 'o'       | circle marker         |
+| 'v'       | triangle_down marker  |
+| '^'       | triangle_up marker    |
+| '<'       | triangle_left marker  |
+| '>'       | triangle_right marker |
+| '1'       | tri_down marker       |
+| '2'       | tri_up marker         |
+| '3'       | tri_left marker       |
+| '4'       | tri_right marker      |
+| 's'       | square marker         |
+| 'p'       | pentagon marker       |
+| '*'       | star marker           |
+| 'h'       | hexagon1 marker       |
+| 'H'       | hexagon2 marker       |
+| '+'       | plus marker           |
+| 'x'       | x marker              |
+| 'D'       | diamond marker        |
+| 'd'       | thin_diamond marker   |
+| '\|'      | vline marker          |
+| '_'       | hline marker          |
+
+### 颜色
+
+| character | color   |
+| --------- | ------- |
+| ‘b’       | blue    |
+| ‘g’       | green   |
+| ‘r’       | red     |
+| ‘c’       | cyan    |
+| ‘m’       | magenta |
+| ‘y’       | yellow  |
+| ‘k’       | black   |
+| ‘w’       | white   |
+
+### plot kwargs
+
+```python
+plot([1,2,3], [1,2,3], 'go-', label='line 1', linewidth=2)
+plot([1,2,3], [1,4,9], 'rs',  label='line 2')
+axis([0, 4, 0, 10])
+legend()
+```
+
+
+
+| Property                                 | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| [agg_filter](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_agg_filter) | unknown                                  |
+| [alpha](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_alpha) | float (0.0 transparent through 1.0 opaque) |
+| [animated](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_animated) | [True \| False]                          |
+| [antialiased](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_antialiased) or aa | [True \| False]                          |
+| [axes](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_axes) | an [Axes](http://matplotlib.org/api/axes_api.html#matplotlib.axes.Axes) instance |
+| [clip_box](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_clip_box) | a [matplotlib.transforms.Bbox](http://matplotlib.org/devel/transformations.html#matplotlib.transforms.Bbox) instance |
+| [clip_on](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_clip_on) | [True \| False]                          |
+| [clip_path](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_clip_path) | [ ([Path](http://matplotlib.org/api/path_api.html#matplotlib.path.Path), [Transform](http://matplotlib.org/devel/transformations.html#matplotlib.transforms.Transform)) \| [Patch](http://matplotlib.org/api/artist_api.html#matplotlib.patches.Patch) \| None ] |
+| [color](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_color) or c | any matplotlib color                     |
+| [contains](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_contains) | a callable function                      |
+| [dash_capstyle](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_dash_capstyle) | [‘butt’ \| ‘round’ \| ‘projecting’]      |
+| [dash_joinstyle](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_dash_joinstyle) | [‘miter’ \| ‘round’ \| ‘bevel’]          |
+| [dashes](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_dashes) | sequence of on/off ink in points         |
+| [data](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_data) | 2D array (rows are x, y) or two 1D arrays |
+| [drawstyle](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_drawstyle) | [ ‘default’ \| ‘steps’ \| ‘steps-pre’ \| ‘steps-mid’ \| ‘steps-post’ ] |
+| [figure](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_figure) | a [matplotlib.figure.Figure](http://matplotlib.org/api/figure_api.html#matplotlib.figure.Figure) instance |
+| [fillstyle](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_fillstyle) | [‘full’ \| ‘left’ \| ‘right’ \| ‘bottom’ \| ‘top’ \| ‘none’] |
+| [gid](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_gid) | an id string                             |
+| [label](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_label) | string or anything printable with ‘%s’ conversion. |
+| [linestyle](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_linestyle) or ls | [ '-' \| '--' \| '-.' \| ':' \| 'None' \| ' ' \| '' ] and any drawstyle in combination with a linestyle, e.g. 'steps--'. |
+| [linewidth](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_linewidth) or lw | float value in points                    |
+| [lod](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_lod) | [True \| False]                          |
+| [marker](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_marker) | [ 7 \| 4 \| 5 \| 6 \| 'o' \| 'D' \| 'h' \| 'H' \| '_' \| '' \| 'None' \| ' ' \| None \| '8' \| 'p' \| ',' \| '+' \| '.' \| 's' \| '*' \| 'd' \| 3 \|0 \| 1 \| 2 \| '1' \| '3' \| '4' \| '2' \| 'v' \| '<' \| '>' \| '^' \| '\|' \| 'x' \| '$...$' \| *tuple* \| *Nx2 array* ] |
+| [markeredgecolor](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_markeredgecolor) or mec | any matplotlib color                     |
+| [markeredgewidth](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_markeredgewidth) or mew | float value in points                    |
+| [markerfacecolor](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_markerfacecolor) or mfc | any matplotlib color                     |
+| [markerfacecoloralt](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_markerfacecoloralt)or mfcalt | any matplotlib color                     |
+| [markersize](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_markersize) or ms | float                                    |
+| [markevery](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_markevery) | None \| integer \| (startind, stride)    |
+| [picker](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_picker) | float distance in points or callable pick function fn(artist, event) |
+| [pickradius](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_pickradius) | float distance in points                 |
+| [rasterized](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_rasterized) | [True \| False \| None]                  |
+| [snap](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_snap) | unknown                                  |
+| [solid_capstyle](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_solid_capstyle) | [‘butt’ \| ‘round’ \| ‘projecting’]      |
+| [solid_joinstyle](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_solid_joinstyle) | [‘miter’ \| ‘round’ \| ‘bevel’]          |
+| [transform](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_transform) | a [matplotlib.transforms.Transform](http://matplotlib.org/devel/transformations.html#matplotlib.transforms.Transform) instance |
+| [url](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_url) | a url string                             |
+| [visible](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_visible) | [True \| False]                          |
+| [xdata](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_xdata) | 1D array                                 |
+| [ydata](http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D.set_ydata) | 1D array                                 |
+| [zorder](http://matplotlib.org/api/artist_api.html#matplotlib.artist.Artist.set_zorder) | any number                               |
+
+
+
+## 坐标轴处理
+
+```python
+plot([1,2,3], [1,2,3], 'go-', label='line 1', linewidth=2)
+plot([1,2,3], [1,4,9], 'rs',  label='line 2')
+axis([0, 4, 0, 10])
+legend()
+```
+
+### 坐标刻度修改
+
+```python
+plt.xticks([])
+plt.yticks([])
+```
+
+### 坐标轴取值范围
+
+```python
+plt.xlim((-1, 1))
+plt.ylim((0, 2))
+```
+
+### 关闭坐标轴
+
+```python
+plt.axis('off')
+```
+### 显示坐标轴网格
+```python
+plt.grid(True)
+```
+
+### 非线性坐标轴
+
+#### 对数坐标轴
+
+```python
+plt.subplot(2,2,1)
+plt.plot(x,y)
+plt.yscale('log')
+plt.title('log')
+plt.grid(True)
+```
+#### symlog坐标轴
+
+```python
+plt.subplot(2,2,1)
+plt.plot(x,y)
+plt.yscale('symlog')
+plt.title('symlog')
+plt.grid(True)
+```
+#### logit坐标轴
+
+```python
+plt.subplot(2,2,1)
+plt.plot(x,y)
+plt.yscale('logit')
+plt.title('logit')
+plt.grid(True)
+```
+#### example
+![](/img/in-post/MCM-note/logaxis.jpg)
+
+
+
+### 线条、图例和标题
+
+#### 字号设置
+
+```python
+ax = plt.subplot(111)
+# 设置刻度字体大小
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+# 设置坐标标签字体大小
+ax.set_xlabel(..., fontsize=20)
+ax.set_ylabel(..., fontsize=20)
+# 设置图例字体大小
+ax.legend(..., fontsize=20)
+```
+
+#### 乱码问题
+
+```python
+myfont = matplotlib.font_manager.FontProperties(fname='C:/Windows/Fonts/msyh.ttf')  #微软雅黑字体
+plt.legend(loc='upper left',prop={'size':6})
+plt.title(u'你',fontproperties=myfont) #指定字体  
+plt.xlabel(u'我',fontproperties=myfont) 
+```
+
+#### 图例
+
+```python
+# 绘制普通图像
+x = np.linspace(-1, 1, 50)
+y1 = 2 * x + 1
+y2 = x**2
+
+plt.figure()
+# 在绘制时设置lable, 逗号是必须的
+l1, = plt.plot(x, y1, label = 'line')
+l2, = plt.plot(x, y2, label = 'parabola', color = 'red', linewidth = 1.0, linestyle = '--')
+
+# 设置坐标轴的取值范围
+plt.xlim((-1, 1))
+plt.ylim((0, 2))
+
+# 设置坐标轴的lable
+plt.xlabel('X axis')
+plt.ylabel('Y axis')
+
+# 设置x坐标轴刻度, 原来为0.25, 修改后为0.5
+plt.xticks(np.linspace(-1, 1, 5))
+# 设置y坐标轴刻度及标签, $$是设置字体
+plt.yticks([0, 0.5], ['$minimum$', 'normal'])
+
+# 设置legend
+plt.legend(handles = [l1, l2,], labels = ['a', 'b'], loc = 'best')
+plt.show()
+```
+
+#### 线条粗细
+
+```python
+plt.plot(x, y, linewidth=2.0)  
+```
+
+
+
+
+
+## 其他类图
+
+### 热力图
+
+```python
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+from matplotlib.colors import LogNorm
+import numpy as np
+x, y = np.random.rand(10), np.random.rand(10)
+z = (np.random.rand(9000000)+np.linspace(0,1, 9000000)).reshape(3000, 3000)
+plt.imshow(z+10, extent=(np.amin(x), np.amax(x), np.amin(y), np.amax(y)),
+        cmap=cm.hot, norm=LogNorm())
+plt.colorbar()
+plt.show()
+```
+
+![](/img/in-post/MCM-note/hot.png)
+
+
+
+```python
+from pylab import *
+
+def f(x,y): return (1-x/2+x**5+y**3)*np.exp(-x**2-y**2)
+
+n = 256
+x = np.linspace(-3,3,n)
+y = np.linspace(-3,3,n)
+X,Y = np.meshgrid(x,y)
+
+contourf(X, Y, f(X,Y), 8, alpha=.75, cmap='jet')
+C = contour(X, Y, f(X,Y), 8, colors='black', linewidth=.5)
+show()
+```
+
+![](/img/in-post/MCM-note/hot2.png)
+
+
+
+### 矩阵图
+
+```python
+#-*- coding:utf-8 -*-
+from pylab import *
+
+#使用中文
+mpl.rcParams['font.sans-serif'] = ['SimHei']
+#显示负号
+matplotlib.rcParams['axes.unicode_minus'] = False
+
+n=32
+list1=[i for i in range(1,33)]
+list2=[i for i in range(-32,0)]
+n= np.arange(n)
+xlim(-1,32)
+ylim(-35,35)
+xlabel(u'每个城市招聘人数')
+bar(n, list1, facecolor='yellow', edgecolor='white')
+bar(n, list2, facecolor='red', edgecolor='white')
+for x,y in zip(n,list1):
+    text(x, y, '%d' % y, ha='center', va= 'bottom' )
+for x,y in zip(n,list2):
+    text(x, y-3, '%d' % y, ha='center', va= 'bottom')
+show()
+```
+
+![](/img/in-post/MCM-note/matex.png)
+
+### 饼图
+
+```python
+import matplotlib.pyplot as plt
+
+labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'  # 设置标签
+sizes = [15, 30, 45, 10]  # 占比，和为100
+colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']  # 颜色
+explode = (0, 0.1, 0, 0)  # 展开第二个扇形，即Hogs，间距为0.1
+
+plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True,
+        startangle=90)  # startangle控制饼状图的旋转方向
+plt.axis('equal')  # 保证饼状图是正圆，否则会有一点角度偏斜
+
+plt.show()
+```
+
+
+
+# 算法
+
+
+
+## 时间序列法
+
+## 神经网络
+
+##  
