@@ -190,6 +190,15 @@ plt.grid(True)
 
 ### 线条、图例和标题
 
+#### 箭头
+
+```python
+plt.arrow(x,y, dx, dy,fc="k", ec="k",
+                              head_width=0.05, head_length=0.2 )
+```
+
+
+
 #### 字号设置
 
 ```python
@@ -342,6 +351,9 @@ plt.show()
 
 ### 3D
 
+[ [Matplotlib Toolkits：三维绘图工具包matplotlib.mplot3d](http://blog.csdn.net/pipisorry/article/details/40008005)
+
+
 
 
 # 算法
@@ -352,4 +364,31 @@ plt.show()
 
 ## 神经网络
 
-##  
+## SVM
+- SVM
+```python
+from sklearn import svm  
+  
+X = [[0, 0], [1, 1], [1, 0]]  # training samples   
+y = [0, 1, 1]  # training target  
+clf = svm.SVC()  # class   
+clf.fit(X, y)  # training the svc model  
+  
+result = clf.predict([2, 2]) # predict the target of testing samples   
+print result  # target   
+  
+print clf.support_vectors_  #support vectors  
+  
+print clf.support_  # indeices of support vectors  
+  
+print clf.n_support_  # number of support vectors for each class  
+```
+- SVR
+```python
+X = [[0, 0], [1, 1]]  
+y = [0.5, 1.5]   
+clf = svm.SVR()   
+clf.fit(X, y)  
+result = clf.predict([2, 2])   
+print result   
+```
