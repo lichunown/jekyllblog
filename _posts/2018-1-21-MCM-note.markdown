@@ -392,3 +392,5 @@ clf.fit(X, y)
 result = clf.predict([2, 2])   
 print result   
 ```
+## 决策树&随机森林
+
