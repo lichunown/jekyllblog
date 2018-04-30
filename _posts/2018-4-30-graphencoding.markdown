@@ -152,11 +152,19 @@ $$
 ##End
 最后贴一波论文
 [Diffusion-Convolutional Neural Networks](https://arxiv.org/abs/1511.02136)
+
 [DeepWalk: Online Learning of Social Representations](https://arxiv.org/abs/1403.6652)
+
 [node2vec: Scalable Feature Learning for Networks](https://cs.stanford.edu/~jure/pubs/node2vec-kdd16.pdf)
+
 [struc2vec: Learning Node Representations from Structural Identity](https://arxiv.org/abs/1704.03165)
+
 [graph2vec: Learning Distributed Representations of Graphs](https://arxiv.org/abs/1707.05005)
+
 (PATCHY-SAN)[Learning Convolutional Neural Networks for Graphs](http://proceedings.mlr.press/v48/niepert16.pdf)
+
 [Gated Graph Sequence Neural Networks](https://arxiv.org/abs/1511.05493)
+
 [Structured Attention Networks](https://arxiv.org/abs/1702.00887)
+
 [Graph Attention Networks](https://arxiv.org/abs/1710.10903)
