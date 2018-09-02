@@ -21,6 +21,7 @@ $$
 $$
 
 $$\mathit{E}$$: 策略评估(policy evaluation)，即利用样本估计行动值
+
 $$\mathit{I}$$: 策略提升(policy improvement), 按照$$\pi_{k+1}(s) = {\arg\max}_a q_k(s,a)$$更新
 
 
@@ -39,7 +40,7 @@ $$\mathit{I}$$: 策略提升(policy improvement), 按照$$\pi_{k+1}(s) = {\arg\m
   - 贪心动作概率
     $$1-\epsilon+\frac{\epsilon}{|A(s)|}$$
 
-#### 证明关于$q_\pi$的新$\epsilon-greeedy$策略$\pi'$优于原策略$\pi$
+#### 证明关于$$q_\pi$$的新$$\epsilon-greeedy$$策略$$\pi'$$优于原策略$$\pi$$
 $$
 \begin{align}
 q_\pi(s, \pi'(s)) & = \sum_a\pi'(a|s)q_\pi(s,a) \\
@@ -232,8 +233,9 @@ $$
 
 每次迭代：
 
-1. 固定$$\lambda=\lambda^{(k)}$$，执行梯度策略更新：$$\theta_{k+1}=\theta_k + \alpha_k\nabla_{\theta}(\mathcal{L}(\pi(\theta),\lambda^{(k)}))|_{\theta=\theta_k}$$
-2. 固定$$\pi=\pi_k$$，执行双重更新，$$\lambda^{(k+1)}=f_k(\lambda^{(k)},\pi_k)$$
+1. 固定$$\lambda=\lambda^{(k)}$$，执行梯度策略更新：
+   $$\theta_{k+1}=\theta_k + \alpha_k\nabla_{\theta}(\mathcal{L}(\pi(\theta),\lambda^{(k)}))|_{\theta=\theta_k}$$
+3. 固定$$\pi=\pi_k$$，执行双重更新，$$\lambda^{(k+1)}=f_k(\lambda^{(k)},\pi_k)$$
 
 ![](/img/in-post/reinforcement/3.png)
 
