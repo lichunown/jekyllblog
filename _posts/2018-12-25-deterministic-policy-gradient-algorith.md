@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "《Deterministic Policy Gradient Algorithms》阅读笔记（or 翻译）2"
+title:      "《Deterministic Policy Gradient Algorithms》阅读笔记（or 翻译）"
 subtitle:   "阅读笔记（or 翻译）"
 date:       2018-12-25
 author:     "LCY"
@@ -8,7 +8,7 @@ header-img: "img/default.jpg"
 tags:
     - ML
     - reinforcement
-    - paper
+    - policy gradient
 ---
 
 # 《Deterministic Policy Gradient Algorithms》阅读笔记（or 翻译）
