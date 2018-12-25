@@ -1,16 +1,16 @@
 ---
 layout:     post
-title:      "¡¶Deterministic Policy Gradient Algorithms¡·ÔÄ¶Á±Ê¼Ç£¨or ·­Òë£©2"
+title:      "¡¶Deterministic Policy Gradient Algorithms¡·ÔÄ¶Á±Ê¼Ç£¨or ·­Òë£©"
 subtitle:   "ÔÄ¶Á±Ê¼Ç£¨or ·­Òë£©"
 date:       2018-12-25
 author:     "LCY"
 header-img: "img/default.jpg"
 tags:
     - ML
-    - reinforcement learning
+    - reinforcement
     - paper
 ---
-[TOC]
+
 
 # ¡¶Deterministic Policy Gradient Algorithms¡·ÔÄ¶Á±Ê¼Ç£¨or ·­Òë£©
 
