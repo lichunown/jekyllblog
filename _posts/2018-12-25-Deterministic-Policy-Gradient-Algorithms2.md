@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "¡¶Deterministic Policy Gradient Algorithms¡·ÔÄ¶Á±Ê¼Ç£¨or ·­Òë£©"
+title:      "¡¶Deterministic Policy Gradient Algorithms¡·ÔÄ¶Á±Ê¼Ç£¨or ·­Òë£©2"
 subtitle:   "ÔÄ¶Á±Ê¼Ç£¨or ·­Òë£©"
 date:       2018-12-25
 author:     "LCY"
