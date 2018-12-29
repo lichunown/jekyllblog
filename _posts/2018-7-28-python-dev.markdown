@@ -2,7 +2,7 @@
 layout:     post
 title:      "python高级用法及编码规范"
 subtitle:   "开发过程常见问题笔记"
-date:       2018-7-28
+date:       2018-12-29
 author:     "LCY"
 header-img: "img/default.jpg"
 tags:
@@ -140,3 +140,158 @@ print 'bar'
 ```
 
 当`print 'foo'`的时候，会调用`sys.stdout.write()`，不过因为`sys.stdout = mystdout()`，被重写了，所以实际调用的是`mystdout`类的`write()`方法。 在python中`print`会自动加换行符'\n',而且是单独`sys.stdout.write('\n')`,所以要`if _str != '\n'`。 再加上`traceback`获得文件名和行号，这样控制台的每个输出都能快速定位到在哪里print的了。 
+
+## abc(Abstract Base Classes)
+
+声明抽象函数
+
+```python
+import abc
+ 
+class Animal(metaclass=abc.ABCMeta):
+ 
+    @abc.abstractmethod
+    def screaming(self):
+        'Return when animal screaming the sound hear likes'
+        return NotImplemented
+ 
+    @abc.abstractmethod
+    def walk(self, x, y):
+        'Make animal walk to position (x, y).'
+        return NotImplemented
+```
+
+```python
+>>> class Dog(Animal):
+...    pass
+...
+>>> Dog()  # Create a instance
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: Can't instantiate abstract class Dog with abstract methods screaming, walk
+```
+
+支持classmethod，property
+
+```python
+import abc
+ 
+class Base(abc.ABC):
+ 
+    @classmethod
+    @abc.abstractmethod
+    def setUpClass(cls):
+        return NotImplemented
+ 
+    @staticmethod
+    @abc.abstractmethod
+    def count(self, data):
+        return len(data)
+ 
+ 
+class Implementation(Base):
+ 
+    @classmethod
+    def setUpClass(cls):
+        cls.count = 0
+ 
+    @staticmethod
+    def count(self, data):
+        self.count = len(data)
+        return self.count
+    
+    
+import abc
+ 
+ 
+class Base(abc.ABC):
+    _index = 0
+ 
+    @property
+    @abc.abstractmethod
+    def index(self):
+        return self._index
+ 
+    @index.setter
+    @abc.abstractmethod
+    def index(self, new_index):
+        self._index = new_index
+ 
+ 
+class Implementation(Base):
+    MAX_LEN = 100
+ 
+    @property
+    def index(self):
+        return self._index
+ 
+    @index.setter
+    def index(self, new_index):
+        new_index = min(new_index, self.MAX_LEN)
+        self._index = new_index
+ 
+imp = Implementation()
+print(imp.index)
+imp.index = 50
+print(imp.index)
+imp.index = 500
+print(imp.index)
+```
+
+## weakref 弱引用
+
+可以处理循环引用问题
+
+```python
+import sys  # We can use sys.getrefcount(obj) to get refcnt
+ 
+ 
+class Foo(object):
+    pass
+ 
+ 
+# Create Foo Object A
+# And print reference count
+A = Foo()
+print('Refcnt of A: ', sys.getrefcount(A))
+ 
+# Create a strong reference to A
+# And check if B is reference to A
+# Then print A refcnt, it should +1
+B = A
+print("A is B's referent: ", id(B) == id(A))
+print('Refcnt of A: ', sys.getrefcount(A))
+ 
+# Create three strong reference to A
+# Refcnt of A should +3
+C = A
+D = A
+E = A
+print('Refcnt of A: ', sys.getrefcount(A))
+ 
+# Delete E should -1 at A's refcnt
+del E
+print('Refcnt of A: ', sys.getrefcount(A))
+```
+
+```python
+import sys
+import weakref
+ 
+ 
+class Foo(object):
+    def show(self):
+        print('hello')
+ 
+ 
+A = Foo()
+print('Refcnt of A: ', sys.getrefcount(A))
+ 
+B = weakref.ref(A)
+print(B)
+B().show()
+print('Refcnt of A: ', sys.getrefcount(A))
+```
+
+
+
