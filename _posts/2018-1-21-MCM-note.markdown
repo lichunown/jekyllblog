@@ -1,15 +1,14 @@
 ---
 layout:     post
-title:      "数模编程常用代码总结"
+title:      "绘图常用代码&算法总结"
 subtitle:   "做个汇总"
-date:       2018-1-21
+date:       2019-1-28
 author:     "LCY"
 header-img: "img/default.jpg"
 tags:
     - ML
     - python
-    - MCM
-    - 数模
+
 ---
 
 
@@ -353,6 +352,41 @@ plt.show()
 
 [ [Matplotlib Toolkits：三维绘图工具包matplotlib.mplot3d](http://blog.csdn.net/pipisorry/article/details/40008005)
 
+### 误差图
+
+#### 误差阴影
+
+```python
+from matplotlib import pyplot as pl
+import numpy as np
+
+x = np.linspace(0, 30, 30)
+y = np.sin(x/6*np.pi)
+error = np.random.normal(0.1, 0.02, size=y.shape)
+y += np.random.normal(0, 0.1, size=y.shape)
+
+pl.plot(x, y, 'k-')
+pl.fill_between(x, y-error, y+error)
+pl.show()
+```
+
+![](/img/in-post/MCM-note/fill_between.png)
+
+
+#### 误差曲线(errorbar)
+
+```
+import matplotlib.pyplot as plt
+import numpy as np
+x=np.linspace(1,10,20)
+dy=0.6
+y=np.sin(x)*3
+
+plt.errorbar(x,y,yerr=dy,fmt='o',ecolor='r',color='b',elinewidth=2,capsize=4)
+plt.show()
+```
+
+![](/img/in-post/MCM-note/errorbar.png)
 
 
 
