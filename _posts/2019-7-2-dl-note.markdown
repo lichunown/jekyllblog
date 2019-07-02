@@ -1,0 +1,79 @@
+---
+layout:     post
+title:      网络压缩与噪音数据处理讲座笔记
+subtitle:  整理自某lamda实验室大佬的讲座
+date:       2019-7-2
+author:     "LCY"
+header-img: "img/in-post/DCRNN/DCRNN.jpg"
+tags:
+    - DL
+    - python
+---
+
+## 训练技巧
+
+使用加噪音的数据训练后，使用原始数据fine-tuning
+
+http://arxiv.org/pdf/1707.02968.pdf
+
+## 网络结构压缩
+
+### CNN压缩 ThiNet
+
+> ThiNet是ICCV2017的文章，主要通过prune方式达到模型压缩和加速，prune以filter（卷积核）为单位，根据该层filter的输出来判断该filter是否对结果有贡献，如果没有贡献或贡献很小，则直接把这个filter去掉，因此文章的核心就在于filter的选择方式，依据则是如果可以用某一层的输入的一个子集代替原来的输入得到尽可能类似原来的输出的话，那么子集以外的输入就可以去掉，同时其对应的前面一层的filter也就可以去掉。以去掉冗余filter做prune的研究还有很多，关键在于选择方式，比如计算filter的绝对值和，认为如果一个filter的绝对值和比较小，说明该filter并不重要，这种算法暂且叫Weight sum；还有计算激活层输出的feature map的值的稀疏程度，如果feature map的值很稀疏，也就是大部分值是0，那么该feature map对应的filter也是冗余的，可以去掉，这种算法暂且叫APoZ（Average Percentage of Zeros）。这两种压缩算法在后面的实验中都会提到。
+
+http://arxiv.org/pdf/1707.06342.pdf
+http://cs.nju.edu.cn/wujx/paper/ThiNet_TPAMI2018.pdf
+http://lambda.nju.edu.cn/luojh/project/ThNet_ICCV17/ThiNet_ICCV17.html
+https://blog.csdn.net/u014380165/article/details/77763037
+
+### MobileNet
+
+> MobileNets是为移动和嵌入式设备提出的高效模型。**MobileNets基于流线型架构(streamlined)，使用深度可分离卷积(depthwise separable convolutions,即Xception变体结构)来构建轻量级深度神经网络。**
+> 论文介绍了两个简单的全局超参数，可有效的在延迟和准确率之间做折中。这些超参数允许我们依据约束条件选择合适大小的模型。论文测试在多个参数量下做了广泛的实验，并在ImageNet分类任务上与其他先进模型做了对比，显示了强大的性能。论文验证了模型在其他领域(对象检测，人脸识别，大规模地理定位等)使用的有效性。
+
+[http://arxiv.org/pdf/1905.02244.pdf](http://arxiv.org/pdf/1905.02244.pdf)
+https://blog.csdn.net/u011974639/article/details/79199306
+
+### EfficientNet
+
+> 这篇文章的作者对神经网路的扩展过程进行了研究与反思。特别的是，作者提出了一个思考：能否找到一个规范化的神经网络扩展方法可以同时提高网络的准确率和效率。要实现这点，一个很关键的步骤便是如何平衡宽度、深度和分辨率这三个维度。作者通过一些经验性的研究发现，可以使用一种固定比例的放缩操作简单地实现对三者的平衡。最终，作者提出了一种简单却有效的复合扩展方法（compound scaling method）。例如，对于一个标准的模型，如果想使用 2^N 倍的计算资源，作者认为只需要对网络宽度增加α^N，深度增加β^N，以及增加γ^N 倍的图像大小。其中α、β、γ是一组恒定系数，他们的值通过在原始的标准模型中使用小范围的网格搜索（grid search）得到。
+
+https://arxiv.org/abs/1905.11946
+https://www.infoq.cn/article/w3-7SmYM6TecLmCh9QHO
+
+
+
+## 自监督学习
+
+### 通过预测图像旋转进行无监督表示学习
+
+https://arxiv.org/abs/1803.07728
+
+## 关于噪音数据
+
+- 对机器学习来说，数据量是一个很重要的指标
+- 收集大规模干净标签数据是很难的
+- 收集大规模有噪音的标签的数据相对比较简单
+
+然而，卷积网络对噪音标签敏感，有噪音的标签会导致严重的过拟合，降低网络正确率。
+
+### 解决方案
+
+- 使用更健壮（robust）的损失函数
+  - 基于数学和统计学
+  - 可能需要一些先验知识
+- 构建一个特殊的噪声感知模型
+  - 最好使用大规模数据集
+  - 启发式算法
+  - 可能需要辅助的清洗算法
+
+## end-to-end uncertainty modelling
+
+label: $y$
+probability density function: $\hat{y}=p(y|X;\theta)$
+
+使用KL散度计算
+
+https://arxiv.org/abs/1903.07788
+https://github.com/yikun2019/PENCIL
