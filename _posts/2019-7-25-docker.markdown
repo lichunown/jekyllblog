@@ -1,0 +1,117 @@
+---
+layout:     post
+title:      "docker使用笔记"
+subtitle:   "只是整理&笔记"
+date:       2019-7-25
+author:     "LCY"
+header-img: "img/default.jpg"
+tags:
+    - docker
+    - server
+---
+
+## 相关连接
+
+[Docker — 从入门到实践](https://yeasy.gitbooks.io/docker_practice/)
+[Docker 入门教程 --- 阮一峰](http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html)
+
+## 创建镜像文件*
+
+在这里，使用docker的目的主要如下：
+
+- 服务环境为内网环境，无法连接外网，环境难以部署
+- 服务的环境依赖过于复杂，tensorflow安装较为困难
+
+*由于tensorflow官网提供了docker镜像，然而tensorflow镜像没有flask等服务框架库，我们需要继承官方提供的tensorflow镜像进行扩展。*
+
+
+
+#### 创建`Dockerfile`文件
+
+- `FROM` 控制image继承自 `tensorflow/tensorflow:1.13.2-py3`库
+- `MAINTAINER`表明维护者信息
+- `RUN` 运行linux命令，完成环境配置（这里使用清华源加快下载速度）
+  - **安装完成后记得清理缓存，可以显著降低镜像文件大小**
+- `WORKDIR` 工作目录
+- `EXPOSE` 端口映射
+
+```bash
+FROM tensorflow/tensorflow:1.13.2-py3
+MAINTAINER Chunyang Li <lichunyang_1@outlook.com>
+
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple flask==1.0.3 
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple gym 
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pandas==0.24.1
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple keras==2.2.4
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple matplotlib
+RUN pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pytest
+RUN rm -rf ~/.cache/pip
+
+RUN mkdir -p /app 
+WORKDIR /app 
+
+EXPOSE 5002
+
+```
+
+#### 生成image文件
+
+在`Dockerfile`文件目录下，执行
+
+```bash
+docker build -t foolsheep/tf-server:0.0.4 .
+```
+
+## 使用image镜像
+
+我们希望做到环境与代码分离，因此镜像中没有任何与部署服务相关的代码内容。
+
+#### 文件系统映射
+
+为了在docker镜像中使用镜像外的文件，使用`-v`参数进行文件系统映射
+采用冒号分隔（类似于scp命令），冒号前为真实环境地址，冒号后为镜像内地址，如：
+
+```bash
+docker run -v "D:\docker_repo":/app foolsheep/tf-server:0.0.3 bash
+```
+
+#### 端口映射
+
+要将docker镜像中运行的服务器监控地址映射到真实地址，使用`-p`参数，如：
+
+```bash
+docker run -p 5002:5002 foolsheep/tf-server:0.0.3 python server.py
+```
+
+#### 后台运行
+
+`-d`参数
+
+### 一个例子
+
+为了验证端口映射啥的成功与否，用python写了很简单的hello world服务器。进行测试
+
+python服务器代码：
+
+```python
+print (80*"*")
+print ("          running test.py           ")
+print (80*"*")
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/", methods=['POST', 'GET'])
+def main_test():
+    return "succeed"
+app.run(host="0.0.0.0", port=5002, threaded=False)
+```
+
+在同一目录下执行
+
+```bash
+docker run -dit -v "D:\docker_repo":/app -p 5002:5002 foolsheep/tf-server:0.0.3 python ./test.py
+```
+
+打开浏览器可以看到服务器运行成功。
+
