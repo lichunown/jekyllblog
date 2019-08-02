@@ -105,6 +105,10 @@ friends: [
         title : "胖子 | P",
         href : "https://blog.cssun.xyz"
     },
+    {
+        title : "None",
+        href : "https://www.cyzuo.cn/"
+    },
     # {
     #     title: "Su",
     #     href: "http://su.gallery/"
