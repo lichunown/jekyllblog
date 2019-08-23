@@ -1,21 +1,20 @@
-# 总结
-
-本文参考自许多总结，如：
 ---
 layout:     post
-title:      "各种各样 GANs 整理"
+title:      "一系列 GANs 总结整理"
 subtitle:   "数学真有意思"
 date:       2019-8-23
 author:     "LCY"
 header-img: "img/in-post/DCRNN/DCRNN.jpg"
 tags:
     - GAN
+    - math
     - pytorch
     - python
-    - math
 ---
 
+# 总结
 
+本文参考自许多总结，如：
 
 <https://blog.csdn.net/qq_25737169/article/details/78857788>
 
@@ -73,48 +72,8 @@ GAN的基本原理其实非常简单，这里以生成图片为例进行说明�
 
 - 整个式子由两项构成。x表示真实图片，z表示输入G网络的噪声，而G(z)表示G网络生成的图片。
 - D(x)表示D网络判断**真实图片是否真实**的概率（因为x就是真实的，所以对于D来说，这个值越接近1越好）。而D(G(z))是**D网络判断G生成的图片的是否真实的概率。**
-- G的目的：上面提到过，
-$$
-D(G(z))
-$$
-是**D网络判断G生成的图片是否真实的概率**，G应该希望自己生成的图片“越接近真实越好”。也就是说，
-$$
-G
-$$
-希望
-$$
-D(G(z))
-$$
-尽可能得大，这时
-$$
-V(D, G)
-$$
-会变小。因此我们看到式子的最前面的记号是
-$$
-min_G
-$$
-。
-- D的目的：
-$$
-D
-$$
-的能力越强，
-$$
-D(x)
-$$
-应该越大，
-$$
-D(G(x))
-$$
-应该越小。这时
-$$
-V(D,G)
-$$
-会变大。因此式子对于D来说是求最大(
-$$
-max_D
-$$
-)
+- G的目的：上面提到过，$$D(G(z))$$是**D网络判断G生成的图片是否真实的概率**，G应该希望自己生成的图片“越接近真实越好”。也就是说，$$G$$希望$$D(G(z))$$尽可能得大，这时$$V(D, G)$$会变小。因此我们看到式子的最前面的记号是$$min_G$$。
+- D的目的：$$D$$的能力越强，$$D(x)$$应该越大，$$D(G(x))$$应该越小。这时$$V(D,G)$$会变大。因此式子对于D来说是求最大($$max_D$$)
 
 #### Algorithm
 
@@ -676,23 +635,7 @@ EBGAN的改变在discriminator上。把D看作是一个energy function，对real
 
 
 
-   主要改变在D里面。EBGAN把D变成了一个AutoEncoder，输出E为Encoder和Decoder的MSE（均方差）。即
-$$
-
-$$
-||Dec(Enc(pic))−pic||
-$$
-
-$$
-，picpic为输入的图片，包括real和fake; 
-$$
-
-$$
-||⋅||
-$$
-
-$$
-  为L2-norm。
+   主要改变在D里面。EBGAN把D变成了一个AutoEncoder，输出E为Encoder和Decoder的MSE（均方差）。即$$||Dec(Enc(pic))−pic||$$，picpic为输入的图片，包括real和fake; $$||⋅||$$  为L2-norm。
 
 损失函数为：
 
@@ -852,31 +795,7 @@ https://arxiv.org/pdf/1411.1784.pdf
 
 ![img](https://image.jiqizhixin.com/uploads/editor/6f72e314-76fc-4436-8df1-80e4de9021a3/1540802330075.png)
 
-要去直接优化
-$$
-
-$$
- I(c;G(z,c)) 
-$$
-
-$$
-是极其困难的，因为这意味着我们要能够计算后验概率（posterior probability）
-$$
-
-$$
-P(c|x)
-$$
-
-$$
-，但是我们可以用一个辅助分布（auxiliary distribution）
-$$
-
-$$
-Q(c|x)
-$$
-
-$$
-，来近似这一后验概率。这样我们能够给出互信息的一个下界（lower bounding）：
+要去直接优化$$ I(c;G(z,c)) $$是极其困难的，因为这意味着我们要能够计算后验概率（posterior probability）$$P(c|x)$$，但是我们可以用一个辅助分布（auxiliary distribution）$$Q(c|x)$$，来近似这一后验概率。这样我们能够给出互信息的一个下界（lower bounding）：
 
 ![img](https://image.jiqizhixin.com/uploads/editor/ac2a18de-8c14-4e9a-a617-5da2bdf463bd/1540802330261.png)
 

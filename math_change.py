@@ -21,7 +21,7 @@ def change(filename, outname):
             else:
                 out += '\n$$\n'
         elif '$' in line:
-            out += line.replace('$','\n$$\n').replace('$$$$','$$')
+            out += line.replace('$','$$').replace('$$$$','$$')
         else:
             out += line
     with open(outname, 'w', encoding='utf8') as f:
