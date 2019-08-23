@@ -12,7 +12,7 @@ def change(filename, outname):
     out = ''
     doublenum = 0
     for line in data:
-        line.replace('img/in-post/', '/img/in-post/')
+        line = line.replace('img/in-post/', '/img/in-post/')
 
         if line=='$$\n':
             doublenum += 1
