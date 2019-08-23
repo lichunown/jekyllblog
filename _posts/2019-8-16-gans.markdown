@@ -1,6 +1,21 @@
 # 总结
 
 本文参考自许多总结，如：
+---
+layout:     post
+title:      "各种各样 GANs 整理"
+subtitle:   "数学真有意思"
+date:       2019-8-23
+author:     "LCY"
+header-img: "img/in-post/DCRNN/DCRNN.jpg"
+tags:
+    - GAN
+    - pytorch
+    - python
+    - math
+---
+
+
 
 <https://blog.csdn.net/qq_25737169/article/details/78857788>
 
