@@ -1,7 +1,8 @@
-import sys
+import sys, os
 
-filename = './Deterministic Policy Gradient Algorithms笔记.md'
-outname = ''
+file_path = './for_myself/'
+outname_path = './_posts'
+
 
 def change(filename, outname):
     f = open(filename, encoding='utf8')
@@ -11,6 +12,8 @@ def change(filename, outname):
     out = ''
     doublenum = 0
     for line in data:
+        line.replace('img/in-post/', '/img/in-post/')
+
         if line=='$$\n':
             doublenum += 1
             if doublenum % 2 == 0:
@@ -28,8 +31,14 @@ def change(filename, outname):
 if __name__=='__main__':
     arglen = len(sys.argv) - 1
     if arglen == 2:
-        change(*sys.argv[1:])
+        file_name, out_name = sys.argv[1:]
+        change(os.path.join(file_path, file_name), os.path.join(outname_path, out_name))
     if arglen == 1:
         filename = sys.argv[1]
-        change(filename, filename)
+        change(os.path.join(file_path, file_name), os.path.join(outname_path, file_name))
+    else:
+        for filename in os.listdir(file_path):
+            if filename.split('.')[-1] == 'md' or filename.split('.')[-1] == 'markdown':
+                print(f"change {os.path.join(file_path, filename)} to {os.path.join(outname_path, filename)}")
+                change(os.path.join(file_path, filename), os.path.join(outname_path, filename))
     
